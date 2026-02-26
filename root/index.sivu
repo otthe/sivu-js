@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sivu Home</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <?sivu
@@ -23,6 +24,8 @@
   <p><?= backendFunction(); ?></p>
 
   <p> <?= var_dump($_SESSION ); ?> </p>
+  <p> <?= var_dump($_SERVER ); ?> </p>
+  <p> <?= var_dump($_GET ); ?> </p>
 
   <form method="POST" action="/add_user.sivu">
     <?= csrfField($_SESSION) ?>
