@@ -26,6 +26,10 @@
   <p> <?= var_dump($_SESSION ); ?> </p>
   <p> <?= var_dump($_SERVER ); ?> </p>
   <p> <?= var_dump($_GET ); ?> </p>
+
+  <?sivu 
+    sharedValue = "has changed!";
+  ?>
   <p> <?= sharedValue ?> </p>
 
   <form method="POST" action="/add_user.sivu">
@@ -36,6 +40,8 @@
     <input type="text" id="lname" name="lname">
     <button type="submit">Send</button>
   </form>
+
+  <?include "_footer.sivu" ?>
 
 </body>
 </html>
