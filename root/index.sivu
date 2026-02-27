@@ -26,6 +26,7 @@
   <p> <?= var_dump($_SESSION ); ?> </p>
   <p> <?= var_dump($_SERVER ); ?> </p>
   <p> <?= var_dump($_GET ); ?> </p>
+  <p> <?= sharedValue ?> </p>
 
   <form method="POST" action="/add_user.sivu">
     <?= csrfField($_SESSION) ?>
