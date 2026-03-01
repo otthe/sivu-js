@@ -1,4 +1,4 @@
-# Example:
+# Example Code:
 
 ```html
   <?sivu
@@ -117,3 +117,20 @@ package.json:
 - npm i
 - npm run dev
 
+## User project structure:
+```
+├── config.js
+├── .env
+├── data
+│   └── some_sqlite_database.db
+├── public
+│   └── styles.css
+└── root
+    ├── backend_js_code.js
+    ├── _some_partial.sivu
+    ├── index.sivu
+    ├── _layout.sivu
+    ├── _some_form_action.sivu
+├── node_modules
+├── package.json
+```
