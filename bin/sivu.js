@@ -1,11 +1,12 @@
 #!/usr/bin/env node
-const fs = require("fs");
-const path = require("path");
-const { spawnSync } = require("child_process");
+import fs from "node:fs";
+import path from "node:path";
+import { spawnSync } from "node:child_process";
+import { pathToFileURL } from "node:url";
 
-const { 
-  CONFIG_TEMPLATE, 
-  STYLES_TEMPLATE, 
+import {
+  CONFIG_TEMPLATE,
+  STYLES_TEMPLATE,
   HEADER_TEMPLATE,
   LAYOUT_TEMPLATE,
   INDEX_TEMPLATE,
@@ -13,7 +14,10 @@ const {
   DELETE_TODO_TEMPLATE,
   JAVASCRIPT_TEMPLATE,
   GITIGNORE_TEMPLATE,
-  ENV_TEMPLATE } = require("../lib/scaffold.js");
+  ENV_TEMPLATE,
+} from "../lib/scaffold.js";
+
+import { createApp } from "../lib/app.js";
 
 function writeFileSafe(filePath, content) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
@@ -39,7 +43,7 @@ function runNpmInstall(abs) {
 
 function initProject(projectName) {
   if (!projectName) {
-    throw new Error('Usage: sivu init <project_name>');
+    throw new Error("Usage: sivu init <project_name>");
   }
 
   const abs = path.resolve(process.cwd(), projectName);
@@ -89,6 +93,17 @@ function initProject(projectName) {
   console.log(`Next:\n  cd ${projectName}\n  npm run dev`);
 }
 
+async function loadConfig(projectDir) {
+  const configPath = path.resolve(projectDir, "config.js");
+  const url = pathToFileURL(configPath).href;
+
+  // Works for both ESM and CommonJS config.js:
+  // - ESM: module exports are on the namespace object
+  // - CJS: module.exports is exposed as `default`
+  const mod = await import(url);
+  return mod.default ?? mod;
+}
+
 async function main() {
   const args = process.argv.slice(2);
   const cmd = args[0];
@@ -100,8 +115,8 @@ async function main() {
 
   // default: run server
   const projectDir = process.cwd();
-  const config = require(path.resolve(projectDir, "config.js"));
-  const { createApp } = require("../lib/app.js");
+  const config = await loadConfig(projectDir);
+
   const app = createApp({ projectDir, config });
 
   // ensure data dir exists
