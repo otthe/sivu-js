@@ -82,7 +82,8 @@ function initProject(projectName) {
   writeFileSafe(path.join(abs, ".env"), ENV_TEMPLATE);
   writeFileSafe(path.join(abs, ".gitignore"), GITIGNORE_TEMPLATE);
 
-  fs.mkdirSync(path.join(abs, "data"), { recursive: true });
+  fs.mkdirSync(path.join(abs, config.data_dir_location), { recursive: true });
+  fs.mkdirSync(path.join(abs, config.log_dir_location), {recursive: true});
 
   console.log("Installing dependencies (npm install)...");
   runNpmInstall(abs);
@@ -117,8 +118,9 @@ async function main() {
 
   const app = createApp({ projectDir, config });
 
-  // ensure data dir exists
+  // ensure dirs exists
   fs.mkdirSync(path.resolve(projectDir, config.data_dir_location ?? "data"), { recursive: true });
+  fs.mkdirSync(path.resolve(projectDir, config.log_dir_location ?? "log"), { recursive: true });
 
   const port = config.port || 3000;
   app.listen(port, () => console.log(`Sivu running on port ${port}`));

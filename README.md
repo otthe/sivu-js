@@ -32,8 +32,16 @@
 <?sivu } ?>
 
 <?sivu
+  console.log("server says hello!");
+?>
+
+<script nonce="<?= $nonce(); ?>">
+  console.log("client says hello!");
+</script>
+
+<?sivu
   $_SESSION.user = {
-    name: "Testi Testinen",
+    name: "Jane Doe",
     isAdmin: true
   }
   const user = $_SESSION.user;
