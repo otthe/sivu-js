@@ -1,6 +1,6 @@
 # Not production ready!
 
-## Example Code:
+## index.sivu:
 
 ```html
 <?sivu
