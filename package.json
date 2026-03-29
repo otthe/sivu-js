@@ -25,7 +25,8 @@
     "better-sqlite3": "^11.0.0",
     "express": "^4.19.2",
     "express-session": "^1.18.0",
-    "helmet": "^8.1.0"
+    "helmet": "^8.1.0",
+    "morgan": "^1.10.1"
   },
   "devDependencies": {
     "esbuild": "^0.25.12",
