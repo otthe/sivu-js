@@ -39,6 +39,7 @@ function hasLine(code, substring) {
 
 test("compiler emits __out initialization + echo/print/println helpers", () => {
   const code = compileTemplateString("Hello");
+  console.log("OUTPUT!!!!!!!");
   console.log(code);
   expect(code).toMatch(/var __out = "";\n/);
   expect(code).toMatch(/function $echo\(/);
