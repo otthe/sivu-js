@@ -3,9 +3,15 @@
 ## index.sivu:
 
 ```html
+<!-- template spesific metadata is read once during server startup -->
+<?meta 
+  rateLimit 500
+  rateWindow 60000
+?>
+
 <?sivu
   const { formatDate } = await $import("./format.js");
-  // top level variables are globally scoped
+  // top level variables are globally scoped and shared between files
   let title = "Sivu Todo Example";
   const todos = await db.query("SELECT * FROM todos");
 ?>
