@@ -59,7 +59,6 @@
 
 ## todo:
 - make sure csrf is only required on form submissions
--figure out why the console logs stopped working on templates
 
 ## local build steps
 - npm run build
