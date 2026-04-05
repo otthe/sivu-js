@@ -42,17 +42,6 @@ function createRuntime(overrides = {}) {
   };
 }
 
-console.log("-------------------------------------");
-console.log("-------------------------------------");
-console.log("-------------------------------------");
-console.log("-------------------------------------");
-console.log("-------------------------------------");
-console.log("-------------------------------------");
-console.log("-------------------------------------");
-console.log("-------------------------------------");
-console.log("-------------------------------------");
-console.log(path.resolve("./test/unit/fixtures"));
-
 function createApp(runtime) {
   const app = express();
 
